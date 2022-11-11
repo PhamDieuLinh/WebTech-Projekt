@@ -25,6 +25,11 @@ public class RestaurantService {
 
     }
 
+    public Restaurant findById(Long id){
+        var restaurantEntity = restaurantRepository.findById(id);
+        return restaurantEntity.map(this::transformEntity).orElse(null);
+    }
+
     public Restaurant create(RestaurantCreateRequest request){
         var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription());
         restaurantEntity = restaurantRepository.save(restaurantEntity);

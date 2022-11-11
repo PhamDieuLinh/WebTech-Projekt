@@ -5,10 +5,7 @@ import htw.berlin.webtech.demo.api.Restaurant;
 import htw.berlin.webtech.demo.api.RestaurantCreateRequest;
 import htw.berlin.webtech.service.RestaurantService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -17,7 +14,6 @@ import java.util.List;
 
 @RestController
 public class RestaurantRestController {
-
     private final RestaurantService restaurantService;
 
     public RestaurantRestController(RestaurantService restaurantService) {
@@ -32,12 +28,18 @@ public class RestaurantRestController {
         return ResponseEntity.ok(restaurants);
     }
 
+    @GetMapping(path = "/api/v1/restaurants/{id}")
+    public ResponseEntity<Restaurant> fetchRestaurantById(@PathVariable Long id) {
+        var restaurant = restaurantService.findById(id);
+        return restaurant != null? ResponseEntity.ok(restaurant) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping
     public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantCreateRequest request) throws URISyntaxException {
       var restaurant = restaurantService.create(request);
       URI uri = new URI("/api/v1/restaurants" + restaurant.getRid());
       return ResponseEntity.created(uri).build();
-    }
+   }
 
 }
 
