@@ -1,12 +1,12 @@
 package htw.berlin.webtech.demo.api;
 
-public class RestaurantCreateRequest {
+public class RestaurantManipulationRequest {
 
     private String name;
     private String address;
     private String description;
 
-    public RestaurantCreateRequest(String name, String address, String description) {
+    public RestaurantManipulationRequest(String name, String address, String description) {
         this.name = name;
         this.address = address;
         this.description = description;

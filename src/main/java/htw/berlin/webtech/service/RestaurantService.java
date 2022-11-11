@@ -1,7 +1,7 @@
 package htw.berlin.webtech.service;
 
 import htw.berlin.webtech.demo.api.Restaurant;
-import htw.berlin.webtech.demo.api.RestaurantCreateRequest;
+import htw.berlin.webtech.demo.api.RestaurantManipulationRequest;
 import htw.berlin.webtech.persistence.RestaurantEntity;
 import htw.berlin.webtech.persistence.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +30,30 @@ public class RestaurantService {
         return restaurantEntity.map(this::transformEntity).orElse(null);
     }
 
-    public Restaurant create(RestaurantCreateRequest request){
+    public Restaurant create(RestaurantManipulationRequest request){
         var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription());
         restaurantEntity = restaurantRepository.save(restaurantEntity);
         return transformEntity(restaurantEntity);
+    }
+
+    public Restaurant update(Long id, RestaurantManipulationRequest request){
+        var restaurantEntityOptional = restaurantRepository.findById(id);
+        if(restaurantEntityOptional.isEmpty()){
+            return null;
+        }
+        var restaurantEntity = restaurantEntityOptional.get();
+        restaurantEntity.setName(request.getName());
+        restaurantEntity.setAddress(request.getAddress());
+        restaurantEntity.setDescription(request.getDescription());
+        restaurantRepository.save(restaurantEntity);
+        return transformEntity(restaurantEntity);
+    }
+    public boolean deleteById(Long id){
+        if(!restaurantRepository.existsById(id)){
+            return false;
+        }
+        restaurantRepository.deleteById(id);
+        return true;
     }
 
     private Restaurant transformEntity(RestaurantEntity restaurantEntity){
