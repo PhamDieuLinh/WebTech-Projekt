@@ -4,8 +4,13 @@ package htw.berlin.webtech.demo;
 import htw.berlin.webtech.demo.api.Restaurant;
 import htw.berlin.webtech.demo.api.RestaurantManipulationRequest;
 import htw.berlin.webtech.service.RestaurantService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -51,5 +56,22 @@ public class RestaurantRestController {
        boolean successful = restaurantService.deleteById(id) ;
        return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
    }
+
+    @Configuration
+    public class MyConfiguration {
+
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**")
+                            .allowedMethods("GET","POST","PUT","DELETE")
+                            .allowedHeaders("*")
+                            .allowedOrigins("http://localhost:3000","https://webtech-aresto-frontend.herokuapp.com");
+                }
+            };
+        }
+    }
 }
 
