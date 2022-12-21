@@ -12,6 +12,9 @@ public class RestaurantManipulationRequest {
         this.description = description;
     }
 
+    public RestaurantManipulationRequest() {
+    }
+
     public String getName() {
         return name;
     }
