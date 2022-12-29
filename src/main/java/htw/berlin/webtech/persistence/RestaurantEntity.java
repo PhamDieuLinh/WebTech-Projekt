@@ -18,6 +18,7 @@ public class RestaurantEntity {
     private String description;
 
     @Column(name = "kategorie")
+    @Enumerated(value = EnumType.STRING)
     private Kategorie kategorie;
 
     public RestaurantEntity(String name, String address, String description, Kategorie kategorie) {

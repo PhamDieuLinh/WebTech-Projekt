@@ -2,6 +2,7 @@ package htw.berlin.webtech.service;
 
 import htw.berlin.webtech.demo.api.Restaurant;
 import htw.berlin.webtech.demo.api.RestaurantManipulationRequest;
+import htw.berlin.webtech.persistence.Kategorie;
 import htw.berlin.webtech.persistence.RestaurantEntity;
 import htw.berlin.webtech.persistence.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
