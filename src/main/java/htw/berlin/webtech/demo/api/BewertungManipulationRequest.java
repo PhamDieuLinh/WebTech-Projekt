@@ -8,6 +8,7 @@ public class BewertungManipulationRequest {
     private String review;
     private Rating rating;
 
+
     public BewertungManipulationRequest(String authorName, String review, Rating rating) {
         this.authorName = authorName;
         this.review = review;
