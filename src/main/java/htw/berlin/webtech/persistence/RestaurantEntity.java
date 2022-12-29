@@ -17,11 +17,15 @@ public class RestaurantEntity {
     @Column(name = "description")
     private String description;
 
-    public RestaurantEntity(String name, String address, String description) {
+    @Column(name = "kategorie")
+    private Kategorie kategorie;
+
+    public RestaurantEntity(String name, String address, String description, Kategorie kategorie) {
         this.rid = rid;
         this.name = name;
         this.address = address;
         this.description = description;
+        this.kategorie = kategorie;
     }
 
     protected RestaurantEntity(){
@@ -54,5 +58,13 @@ public class RestaurantEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Kategorie getKategorie() {
+        return kategorie;
+    }
+
+    public void setKategorie(Kategorie kategorie) {
+        this.kategorie = kategorie;
     }
 }

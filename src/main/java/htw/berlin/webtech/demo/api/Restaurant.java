@@ -1,5 +1,7 @@
 package htw.berlin.webtech.demo.api;
 
+import htw.berlin.webtech.persistence.Kategorie;
+
 public class Restaurant {
 
     private long rid;
@@ -7,11 +9,14 @@ public class Restaurant {
     private String address;
     private String description;
 
-    public Restaurant(long rid, String name, String address, String description) {
+    private Kategorie kategorie;
+
+    public Restaurant(long rid, String name, String address, String description, Kategorie kategorie) {
         this.rid = rid;
         this.name = name;
         this.address = address;
         this.description = description;
+        this.kategorie = kategorie;
     }
 
     public long getRid() {
@@ -44,5 +49,13 @@ public class Restaurant {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Kategorie getKategorie() {
+        return kategorie;
+    }
+
+    public void setKategorie(Kategorie kategorie) {
+        this.kategorie = kategorie;
     }
 }

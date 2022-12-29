@@ -31,7 +31,7 @@ public class RestaurantService {
     }
 
     public Restaurant create(RestaurantManipulationRequest request){
-        var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription());
+        var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription(), request.getKategorie());
         restaurantEntity = restaurantRepository.save(restaurantEntity);
         return transformEntity(restaurantEntity);
     }
@@ -45,6 +45,7 @@ public class RestaurantService {
         restaurantEntity.setName(request.getName());
         restaurantEntity.setAddress(request.getAddress());
         restaurantEntity.setDescription(request.getDescription());
+        restaurantEntity.setKategorie(request.getKategorie());
         restaurantRepository.save(restaurantEntity);
         return transformEntity(restaurantEntity);
     }
@@ -57,7 +58,7 @@ public class RestaurantService {
     }
 
     private Restaurant transformEntity(RestaurantEntity restaurantEntity){
-        return new Restaurant(restaurantEntity.getRid(), restaurantEntity.getName(), restaurantEntity.getAddress(), restaurantEntity.getDescription());
+        return new Restaurant(restaurantEntity.getRid(), restaurantEntity.getName(), restaurantEntity.getAddress(), restaurantEntity.getDescription(), restaurantEntity.getKategorie());
     }
 
 }

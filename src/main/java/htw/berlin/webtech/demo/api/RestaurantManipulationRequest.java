@@ -1,15 +1,20 @@
 package htw.berlin.webtech.demo.api;
 
+import htw.berlin.webtech.persistence.Kategorie;
+
 public class RestaurantManipulationRequest {
 
     private String name;
     private String address;
     private String description;
 
-    public RestaurantManipulationRequest(String name, String address, String description) {
+    private Kategorie kategorie;
+
+    public RestaurantManipulationRequest(String name, String address, String description, Kategorie kategorie) {
         this.name = name;
         this.address = address;
         this.description = description;
+        this.kategorie = kategorie;
     }
 
     public RestaurantManipulationRequest() {
@@ -37,5 +42,13 @@ public class RestaurantManipulationRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Kategorie getKategorie() {
+        return kategorie;
+    }
+
+    public void setKategorie(Kategorie kategorie) {
+        this.kategorie = kategorie;
     }
 }
