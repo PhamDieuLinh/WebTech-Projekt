@@ -14,16 +14,14 @@ public class BewertungEntity{
     private String authorName;
     @Column(name = "review")
     private String review;
+    @Column(name = "rid")
+    private int rid;
 
-    @Column(name = "kategorie")
-    @Enumerated(value = EnumType.ORDINAL)
-    private Kategorie kategorie;
-
-    public BewertungEntity(Long id, String authorName, String review, Kategorie kategorie) {
+    public BewertungEntity(Long id, String authorName, String review, int rid) {
         this.id = id;
         this.authorName = authorName;
         this.review = review;
-        this.kategorie = kategorie;
+        this.rid = rid;
     }
 
     protected BewertungEntity(){
@@ -54,11 +52,11 @@ public class BewertungEntity{
         this.review = review;
     }
 
-    public Kategorie getKategorie() {
-        return kategorie;
+    public int getRid() {
+        return rid;
     }
 
-    public void setKategorie(Kategorie kategorie) {
-        this.kategorie = kategorie;
+    public void setRid(int rid) {
+        this.rid = rid;
     }
 }
