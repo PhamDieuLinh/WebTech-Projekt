@@ -14,13 +14,16 @@ public class BewertungEntity{
     private String authorName;
     @Column(name = "review")
     private String review;
+    @Column(name = "rating")
+    private  Rating rating;
     @Column(name = "rid")
-    private int rid;
+    private Long rid;
 
-    public BewertungEntity(Long id, String authorName, String review, int rid) {
+    public BewertungEntity(Long id, String authorName, String review, Rating rating,  Long rid) {
         this.id = id;
         this.authorName = authorName;
         this.review = review;
+        this.rating = rating;
         this.rid = rid;
     }
 
@@ -52,11 +55,18 @@ public class BewertungEntity{
         this.review = review;
     }
 
-    public int getRid() {
-        return rid;
+    public Rating getRating() {
+        return rating;
     }
 
-    public void setRid(int rid) {
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Long getRid() {
+        return rid;
+    }
+    public void setRid(Long rid) {
         this.rid = rid;
     }
 }
