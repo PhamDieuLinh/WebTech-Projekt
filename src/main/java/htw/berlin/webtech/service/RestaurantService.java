@@ -15,26 +15,30 @@ import java.util.stream.Collectors;
 public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepository;
+    RestaurantTransformer restaurantTransformer;
+
+
 
     public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
+        this.restaurantTransformer = restaurantTransformer;
     }
 
     public List<Restaurant> findAll(){
         List<RestaurantEntity> restaurants = restaurantRepository.findAll();
-        return restaurants.stream().map(this::transformEntity).collect(Collectors.toList());
+        return restaurants.stream().map(restaurantTransformer::transformEntity).collect(Collectors.toList());
 
     }
 
     public Restaurant findById(Long id){
         var restaurantEntity = restaurantRepository.findById(id);
-        return restaurantEntity.map(this::transformEntity).orElse(null);
+        return restaurantEntity.map(restaurantTransformer::transformEntity).orElse(null);
     }
 
     public Restaurant create(RestaurantManipulationRequest request){
         var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription(), request.getKategorie());
         restaurantEntity = restaurantRepository.save(restaurantEntity);
-        return transformEntity(restaurantEntity);
+        return restaurantTransformer.transformEntity(restaurantEntity);
     }
 
     public Restaurant update(Long id, RestaurantManipulationRequest request){
@@ -48,7 +52,7 @@ public class RestaurantService {
         restaurantEntity.setDescription(request.getDescription());
         restaurantEntity.setKategorie(request.getKategorie());
         restaurantRepository.save(restaurantEntity);
-        return transformEntity(restaurantEntity);
+        return restaurantTransformer.transformEntity(restaurantEntity);
     }
     public boolean deleteById(Long id){
         if(!restaurantRepository.existsById(id)){
@@ -56,10 +60,6 @@ public class RestaurantService {
         }
         restaurantRepository.deleteById(id);
         return true;
-    }
-
-    private Restaurant transformEntity(RestaurantEntity restaurantEntity){
-        return new Restaurant(restaurantEntity.getRid(), restaurantEntity.getName(), restaurantEntity.getAddress(), restaurantEntity.getDescription(), restaurantEntity.getKategorie());
     }
 
 }

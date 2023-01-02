@@ -1,6 +1,8 @@
 package htw.berlin.webtech.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity(name = "restaurants")
@@ -21,8 +23,10 @@ public class RestaurantEntity {
     @Enumerated(value = EnumType.STRING)
     private Kategorie kategorie;
 
+    @OneToMany(mappedBy = "resid", fetch = FetchType.EAGER)
+    private List<BewertungEntity> bewertungen = new ArrayList<>();
+
     public RestaurantEntity(String name, String address, String description, Kategorie kategorie) {
-        this.rid = rid;
         this.name = name;
         this.address = address;
         this.description = description;
@@ -67,5 +71,13 @@ public class RestaurantEntity {
 
     public void setKategorie(Kategorie kategorie) {
         this.kategorie = kategorie;
+    }
+
+    public List<BewertungEntity> getBewertungen() {
+        return bewertungen;
+    }
+
+    public void setBewertungen(List<BewertungEntity> bewertungen) {
+        this.bewertungen = bewertungen;
     }
 }

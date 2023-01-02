@@ -2,6 +2,8 @@ package htw.berlin.webtech.demo.api;
 
 import htw.berlin.webtech.persistence.Kategorie;
 
+import java.util.List;
+
 public class Restaurant {
 
     private long rid;
@@ -10,13 +12,15 @@ public class Restaurant {
     private String description;
 
     private Kategorie kategorie;
+    private List<Long> bewertungIds;
 
-    public Restaurant(long rid, String name, String address, String description, Kategorie kategorie) {
+    public Restaurant(long rid, String name, String address, String description, Kategorie kategorie, List<Long> bewertungIds) {
         this.rid = rid;
         this.name = name;
         this.address = address;
         this.description = description;
         this.kategorie = kategorie;
+        this.bewertungIds = bewertungIds;
     }
 
     public long getRid() {
@@ -57,5 +61,13 @@ public class Restaurant {
 
     public void setKategorie(Kategorie kategorie) {
         this.kategorie = kategorie;
+    }
+
+    public List<Long> getBewertungIds() {
+        return bewertungIds;
+    }
+
+    public void setBewertungIds(List<Long> bewertungIds) {
+        this.bewertungIds = bewertungIds;
     }
 }

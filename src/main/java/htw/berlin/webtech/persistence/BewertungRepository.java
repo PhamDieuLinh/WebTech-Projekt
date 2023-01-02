@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface BewertungRepository extends JpaRepository<BewertungEntity, Long> {
-    List<BewertungEntity> findAllByRid(long rid);
+    List<BewertungEntity> findAllByResid(RestaurantEntity resid);
 }
