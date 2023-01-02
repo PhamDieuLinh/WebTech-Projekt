@@ -4,16 +4,18 @@ import htw.berlin.webtech.demo.api.Bewertung;
 import htw.berlin.webtech.persistence.BewertungEntity;
 import htw.berlin.webtech.persistence.BewertungRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class BewertungService {
 
     @Autowired
     BewertungRepository bewertungRepository;
 
-    public  BewertungService(BewertungRepository bewertungtRepository) {
+    public  BewertungService(BewertungRepository bewertungRepository) {
         this.bewertungRepository = bewertungRepository;
     }
 
@@ -22,4 +24,8 @@ public class BewertungService {
         return bewertungen.stream().map(this::transformEntity).collect(Collectors.toList());
 
     }
+    private Bewertung transformEntity(BewertungEntity bewertungEntity){
+        return new Bewertung(bewertungEntity.getId(), bewertungEntity.getAuthorName(), bewertungEntity.getReview(), bewertungEntity.getRating(), bewertungEntity.getRid());
+    }
 }
+

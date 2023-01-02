@@ -19,7 +19,7 @@ public class BewertungEntity{
     @Column(name = "rid")
     private Long rid;
 
-    public BewertungEntity(Long id, String authorName, String review, Rating rating,  Long rid) {
+    public BewertungEntity(String authorName, String review, Rating rating,  Long rid) {
         this.id = id;
         this.authorName = authorName;
         this.review = review;
@@ -33,10 +33,6 @@ public class BewertungEntity{
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAuthorName() {
