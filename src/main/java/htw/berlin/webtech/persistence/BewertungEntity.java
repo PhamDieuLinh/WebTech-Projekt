@@ -16,15 +16,16 @@ public class BewertungEntity{
     private String review;
     @Column(name = "rating")
     private  Rating rating;
-    @Column(name = "rid")
-    private long rid;
 
-    public BewertungEntity(String authorName, String review, Rating rating,  long rid) {
-        this.id = id;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name= "resid", referencedColumnName = "id")
+    private RestaurantEntity resid;
+
+    public BewertungEntity(String authorName, String review, Rating rating, RestaurantEntity resid) {
         this.authorName = authorName;
         this.review = review;
         this.rating = rating;
-        this.rid = rid;
+        this.resid = resid;
     }
 
     protected BewertungEntity(){
@@ -59,10 +60,11 @@ public class BewertungEntity{
         this.rating = rating;
     }
 
-    public long getRid() {
-        return rid;
+    public RestaurantEntity getResid() {
+        return resid;
     }
-    public void setRid(long rid) {
-        this.rid = rid;
+
+    public void setResid(RestaurantEntity resid) {
+        this.resid = resid;
     }
 }

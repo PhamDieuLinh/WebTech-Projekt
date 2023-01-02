@@ -7,7 +7,6 @@ public class BewertungManipulationRequest {
     private String authorName;
     private String review;
     private Rating rating;
-
     private long rid;
 
 
