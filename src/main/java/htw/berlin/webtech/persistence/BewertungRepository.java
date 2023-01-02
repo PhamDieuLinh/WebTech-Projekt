@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface BewertungRepository extends JpaRepository<BewertungEntity, Long> {
-    List<BewertungEntity> findAllByName(String name);
+    List<BewertungEntity> findAllByRid(long rid);
 }

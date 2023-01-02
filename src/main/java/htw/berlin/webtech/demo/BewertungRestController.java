@@ -5,10 +5,9 @@ import htw.berlin.webtech.service.BewertungService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
+@RestController
 public class BewertungRestController {
 
     private final BewertungService bewertungService;
