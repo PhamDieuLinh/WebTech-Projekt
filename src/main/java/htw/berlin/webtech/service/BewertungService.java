@@ -27,8 +27,8 @@ public class BewertungService {
     }
 
     public Bewertung create(BewertungManipulationRequest request){
-        var rating = Rating.valueOf(request.getRating());
         var restaurant = restaurantRepository.findById(request.getRid()).orElseThrow();
+        var rating = Rating.valueOf(request.getRating());
         var bewertungEntity= new BewertungEntity(request.getAuthorName(),request.getReview(), rating,restaurant);
         bewertungEntity = bewertungRepository.save(bewertungEntity);
         return transformEntity(bewertungEntity);

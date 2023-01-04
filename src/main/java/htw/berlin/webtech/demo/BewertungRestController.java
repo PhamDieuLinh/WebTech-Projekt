@@ -2,7 +2,6 @@ package htw.berlin.webtech.demo;
 
 import htw.berlin.webtech.demo.api.Bewertung;
 import htw.berlin.webtech.demo.api.BewertungManipulationRequest;
-import htw.berlin.webtech.demo.api.RestaurantManipulationRequest;
 import htw.berlin.webtech.service.BewertungService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

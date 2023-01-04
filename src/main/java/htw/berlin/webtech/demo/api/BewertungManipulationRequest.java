@@ -17,6 +17,9 @@ public class BewertungManipulationRequest {
         this.rid = rid;
     }
 
+    public BewertungManipulationRequest(){
+    }
+
     public String getAuthorName() {
         return authorName;
     }

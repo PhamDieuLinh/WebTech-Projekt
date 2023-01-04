@@ -29,10 +29,9 @@ public class BewertungEntity{
     }
 
     protected BewertungEntity(){
-
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
