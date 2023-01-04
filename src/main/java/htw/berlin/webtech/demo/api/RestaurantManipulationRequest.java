@@ -2,15 +2,16 @@ package htw.berlin.webtech.demo.api;
 
 import htw.berlin.webtech.persistence.Kategorie;
 
+import java.util.List;
+
 public class RestaurantManipulationRequest {
 
     private String name;
     private String address;
     private String description;
+    private String kategorie;
 
-    private Kategorie kategorie;
-
-    public RestaurantManipulationRequest(String name, String address, String description, Kategorie kategorie) {
+    public RestaurantManipulationRequest(String name, String address, String description, String kategorie) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -44,11 +45,11 @@ public class RestaurantManipulationRequest {
         this.description = description;
     }
 
-    public Kategorie getKategorie() {
+    public String getKategorie() {
         return kategorie;
     }
 
-    public void setKategorie(Kategorie kategorie) {
+    public void setKategorie(String kategorie) {
         this.kategorie = kategorie;
     }
 }

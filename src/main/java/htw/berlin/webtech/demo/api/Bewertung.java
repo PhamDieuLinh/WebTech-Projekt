@@ -4,13 +4,13 @@ import htw.berlin.webtech.persistence.Rating;
 
 public class Bewertung {
 
-    private long id;
+    private Long id;
     private String authorName;
     private String review;
     private Rating rating;
-    private long rid;
+    private Long rid;
 
-    public Bewertung(long id, String authorName, String review, Rating rating, long rid) {
+    public Bewertung(Long id, String authorName, String review, Rating rating, Long rid) {
         this.id = id;
         this.authorName = authorName;
         this.review = review;
@@ -22,7 +22,7 @@ public class Bewertung {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,7 +50,7 @@ public class Bewertung {
         this.rating = rating;
     }
 
-    public long getRid() {
+    public Long getRid() {
         return rid;
     }
 

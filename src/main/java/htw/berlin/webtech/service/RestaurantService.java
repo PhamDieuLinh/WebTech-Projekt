@@ -15,11 +15,12 @@ import java.util.stream.Collectors;
 public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepository;
+    @Autowired
     RestaurantTransformer restaurantTransformer;
 
 
 
-    public RestaurantService(RestaurantRepository restaurantRepository) {
+    public RestaurantService(RestaurantRepository restaurantRepository, RestaurantTransformer restaurantTransformer) {
         this.restaurantRepository = restaurantRepository;
         this.restaurantTransformer = restaurantTransformer;
     }
@@ -36,12 +37,14 @@ public class RestaurantService {
     }
 
     public Restaurant create(RestaurantManipulationRequest request){
-        var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription(), request.getKategorie());
+        var kategorie = Kategorie.valueOf(request.getKategorie());
+        var restaurantEntity = new RestaurantEntity(request.getName(), request.getAddress(), request.getDescription(), kategorie);
         restaurantEntity = restaurantRepository.save(restaurantEntity);
         return restaurantTransformer.transformEntity(restaurantEntity);
     }
 
     public Restaurant update(Long id, RestaurantManipulationRequest request){
+        var kategorie = Kategorie.valueOf(request.getKategorie());
         var restaurantEntityOptional = restaurantRepository.findById(id);
         if(restaurantEntityOptional.isEmpty()){
             return null;
@@ -50,7 +53,7 @@ public class RestaurantService {
         restaurantEntity.setName(request.getName());
         restaurantEntity.setAddress(request.getAddress());
         restaurantEntity.setDescription(request.getDescription());
-        restaurantEntity.setKategorie(request.getKategorie());
+        restaurantEntity.setKategorie(kategorie);
         restaurantRepository.save(restaurantEntity);
         return restaurantTransformer.transformEntity(restaurantEntity);
     }

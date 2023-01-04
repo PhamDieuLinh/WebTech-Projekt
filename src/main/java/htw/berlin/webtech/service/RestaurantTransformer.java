@@ -12,7 +12,7 @@ public class RestaurantTransformer {
 
     public Restaurant transformEntity(RestaurantEntity restaurantEntity){
         var bewertungenIds = restaurantEntity.getBewertungen().stream().map(BewertungEntity::getId).collect(Collectors.toList());
-        return new Restaurant(restaurantEntity.getRid(),
+        return new Restaurant(restaurantEntity.getId(),
                 restaurantEntity.getName(),
                 restaurantEntity.getAddress(),
                 restaurantEntity.getDescription(),

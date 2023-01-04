@@ -18,7 +18,7 @@ public class BewertungEntity{
     private  Rating rating;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name= "resid", referencedColumnName = "id")
+    @JoinColumn(name= "res_id", referencedColumnName = "id")
     private RestaurantEntity resid;
 
     public BewertungEntity(String authorName, String review, Rating rating, RestaurantEntity resid) {

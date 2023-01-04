@@ -6,11 +6,11 @@ public class BewertungManipulationRequest {
 
     private String authorName;
     private String review;
-    private Rating rating;
-    private long rid;
+    private String rating;
+    private Long rid;
 
 
-    public BewertungManipulationRequest(String authorName, String review, Rating rating, long rid) {
+    public BewertungManipulationRequest(String authorName, String review, String rating, Long rid) {
         this.authorName = authorName;
         this.review = review;
         this.rating = rating;
@@ -33,15 +33,15 @@ public class BewertungManipulationRequest {
         this.review = review;
     }
 
-    public Rating getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
-    public long getRid() {
+    public Long getRid() {
         return rid;
     }
 

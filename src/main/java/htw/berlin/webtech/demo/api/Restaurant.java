@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Restaurant {
 
-    private long rid;
+    private Long id;
     private String name;
     private String address;
     private String description;
@@ -14,8 +14,8 @@ public class Restaurant {
     private Kategorie kategorie;
     private List<Long> bewertungIds;
 
-    public Restaurant(long rid, String name, String address, String description, Kategorie kategorie, List<Long> bewertungIds) {
-        this.rid = rid;
+    public Restaurant(Long id, String name, String address, String description, Kategorie kategorie, List<Long> bewertungIds) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.description = description;
@@ -23,12 +23,12 @@ public class Restaurant {
         this.bewertungIds = bewertungIds;
     }
 
-    public long getRid() {
-        return rid;
+    public Long getId() {
+        return id;
     }
 
-    public void setRid(long rid) {
-        this.rid = rid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

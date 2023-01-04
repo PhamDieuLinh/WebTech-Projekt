@@ -40,7 +40,7 @@ public class RestaurantRestController {
     @PostMapping(path = "/api/v1/restaurants")
     public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
       var restaurant = restaurantService.create(request);
-      URI uri = new URI("/api/v1/restaurants" + restaurant.getRid());
+      URI uri = new URI("/api/v1/restaurants" + restaurant.getId());
       return ResponseEntity.created(uri).build();
    }
 
