@@ -7,10 +7,10 @@ public class Bewertung {
     private Long id;
     private String authorName;
     private String review;
-    private Rating rating;
+    private int rating;
     private Long rid;
 
-    public Bewertung(Long id, String authorName, String review, Rating rating, Long rid) {
+    public Bewertung(Long id, String authorName, String review, int rating, Long rid) {
         this.id = id;
         this.authorName = authorName;
         this.review = review;
@@ -42,11 +42,11 @@ public class Bewertung {
         this.review = review;
     }
 
-    public Rating getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

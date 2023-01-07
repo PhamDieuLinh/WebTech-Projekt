@@ -17,6 +17,9 @@ public class BewertungService {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    @Autowired
+    RestaurantTransformer restaurantTransformer;
+
     public  BewertungService(BewertungRepository bewertungRepository) {
         this.bewertungRepository = bewertungRepository;
     }
@@ -26,9 +29,21 @@ public class BewertungService {
         return bewertungen.stream().map(this::transformEntity).collect(Collectors.toList());
     }
 
+    public Bewertung findById(Long id){
+        var bewertungEntity = bewertungRepository.findById(id);
+        return bewertungEntity.map(this::transformEntity).orElse(null);
+    }
+    public List<Bewertung> findAllByResId(Long restaurantid){
+        var optionalRestaurantEntity = restaurantRepository.findById(restaurantid);
+        var restaurantEntity = optionalRestaurantEntity.get();
+        List<BewertungEntity> bewertungen = bewertungRepository.findAllByResid(restaurantEntity);
+        return bewertungen.stream().map(this::transformEntity).collect(Collectors.toList());
+    }
+
+
     public Bewertung create(BewertungManipulationRequest request){
         var restaurant = restaurantRepository.findById(request.getRid()).orElseThrow();
-        var rating = Rating.valueOf(request.getRating());
+        var rating = Rating.valueOf(request.getRating()).getValue();
         var bewertungEntity= new BewertungEntity(request.getAuthorName(),request.getReview(), rating,restaurant);
         bewertungEntity = bewertungRepository.save(bewertungEntity);
         return transformEntity(bewertungEntity);
@@ -40,6 +55,14 @@ public class BewertungService {
                 bewertungEntity.getReview(),
                 bewertungEntity.getRating(),
                 bewertungEntity.getResid().getId());
+    }
+
+    public boolean deleteById(Long id){
+        if(!bewertungRepository.existsById(id)){
+            return false;
+        }
+        bewertungRepository.deleteById(id);
+        return true;
     }
 }
 
