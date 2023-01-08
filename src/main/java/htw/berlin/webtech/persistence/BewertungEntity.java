@@ -28,7 +28,7 @@ public class BewertungEntity{
         this.resid = resid;
     }
 
-    protected BewertungEntity(){
+    public BewertungEntity(){
     }
 
     public Long getId() {
