@@ -37,6 +37,12 @@ public class RestaurantRestController {
         return restaurant != null? ResponseEntity.ok(restaurant) : ResponseEntity.notFound().build();
     }
 
+    @GetMapping(path = "/api/v1/restaurants/kategorie/{kategorie}")
+    public ResponseEntity<List<Restaurant>> fetchRestaurantByKategorie(@PathVariable String kategorie) {
+        var restaurants = restaurantService.findByKategorie(kategorie);
+        return restaurants != null? ResponseEntity.ok(restaurants) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping(path = "/api/v1/restaurants")
     public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
       var restaurant = restaurantService.create(request);

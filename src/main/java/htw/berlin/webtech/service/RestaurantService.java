@@ -2,6 +2,7 @@ package htw.berlin.webtech.service;
 
 import htw.berlin.webtech.demo.api.Restaurant;
 import htw.berlin.webtech.demo.api.RestaurantManipulationRequest;
+import htw.berlin.webtech.persistence.BewertungEntity;
 import htw.berlin.webtech.persistence.Kategorie;
 import htw.berlin.webtech.persistence.RestaurantEntity;
 import htw.berlin.webtech.persistence.RestaurantRepository;
@@ -34,6 +35,12 @@ public class RestaurantService {
     public Restaurant findById(Long id){
         var restaurantEntity = restaurantRepository.findById(id);
         return restaurantEntity.map(restaurantTransformer::transformEntity).orElse(null);
+    }
+
+    public List<Restaurant> findByKategorie(String kategorie){
+        List<RestaurantEntity> restaurants = restaurantRepository.findAll();
+        restaurants = restaurants.stream().filter(res -> res.getKategorie().toString().equals(kategorie)).collect(Collectors.toList());
+        return restaurants.stream().map(restaurantTransformer::transformEntity).collect(Collectors.toList());
     }
 
     public Restaurant create(RestaurantManipulationRequest request){

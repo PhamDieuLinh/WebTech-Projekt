@@ -15,13 +15,13 @@ public class BewertungEntity{
     @Column(name = "review")
     private String review;
     @Column(name = "rating")
-    private  Rating rating;
+    private  int rating;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name= "res_id", referencedColumnName = "id")
     private RestaurantEntity resid;
 
-    public BewertungEntity(String authorName, String review, Rating rating, RestaurantEntity resid) {
+    public BewertungEntity(String authorName, String review, int rating, RestaurantEntity resid) {
         this.authorName = authorName;
         this.review = review;
         this.rating = rating;
@@ -51,11 +51,11 @@ public class BewertungEntity{
         this.review = review;
     }
 
-    public Rating getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
