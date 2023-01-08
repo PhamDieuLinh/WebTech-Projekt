@@ -43,7 +43,7 @@ public class RestaurantRestControllerTest {
                 .andExpect(status().isNotFound());
     }
     @Test
-    @DisplayName("should return found restaurant from person service")
+    @DisplayName("should return found restaurant from restaurant service")
     void should_return_found_restauarnt_from_person_service() throws Exception {
         // given
         var restaurants = List.of(
@@ -54,18 +54,17 @@ public class RestaurantRestControllerTest {
 
         // when
         mockMvc.perform(get("/api/v1/restaurants"))
-                // then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2))
                 .andExpect(jsonPath("$[0].id").value(1))
-//                .andExpect(jsonPath("$[0].name").value("New Day Vietnam Heritage Food"))
-//                .andExpect(jsonPath("$[0].address").value("Niederbarnimstraße 25, 10247 Berlin"))
-//                .andExpect(jsonPath("$[0].description").value("traditional vietnamese cuisine"))
-//                .andExpect(jsonPath("$[0].kategorie").value("VIETNAMESISCH)")
-                .andExpect(jsonPath("$[1].id").value(2));
-//                .andExpect(jsonPath("$[1].name").value("Willis"))
-//                .andExpect(jsonPath("$[1].address").value("Wisbyer Str. 4, 10439 Berlin"))
-//                .andExpect(jsonPath("$[1].description").value("frische und gesunde Spezialitäten aus Vietnam"))
-//                .andExpect(jsonPath("$[1].kategorie").value("VIETNAMESISCH")));
+                .andExpect(jsonPath("$[0].name").value("New Day Vietnam Heritage Food"))
+                .andExpect(jsonPath("$[0].address").value("Niederbarnimstraße 25, 10247 Berlin"))
+                .andExpect(jsonPath("$[0].description").value("traditional vietnamese cuisine"))
+                .andExpect(jsonPath("$[0].kategorie").value("VIETNAMESISCH"))
+                .andExpect(jsonPath("$[1].id").value(2))
+                .andExpect(jsonPath("$[1].name").value("Willis"))
+                .andExpect(jsonPath("$[1].address").value("Wisbyer Str. 4, 10439 Berlin"))
+                .andExpect(jsonPath("$[1].description").value("frische und gesunde Spezialitäten aus Vietnam"))
+                .andExpect(jsonPath("$[1].kategorie").value("VIETNAMESISCH"));
     }
 }

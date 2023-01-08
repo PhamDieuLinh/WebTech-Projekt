@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verify;
+
 
 @ExtendWith(MockitoExtension.class)
 public class RestaurantServiceTest  implements WithAssertions {
@@ -34,5 +36,18 @@ public class RestaurantServiceTest  implements WithAssertions {
         // then
         verifyNoMoreInteractions(repository);
         assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("should return true if delete was successful")
+    void should_return_true_if_delete_was_successful() {
+
+        Long givenId = 14L;
+        doReturn(true).when(repository).existsById(givenId);
+
+        boolean result = underTest.deleteById(givenId);
+
+        verify(repository).deleteById(givenId);
+        assertThat(result).isTrue();
     }
 }

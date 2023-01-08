@@ -27,11 +27,8 @@ public class RestaurantTransformerTest implements WithAssertions {
         doReturn("billiges vietnamesisches Essen").when(restaurantEntity).getDescription();
         doReturn(VIETNAMESISCH).when(restaurantEntity).getKategorie();
         doReturn(List.of(new BewertungEntity())).when(restaurantEntity).getBewertungen();
-
-        // when
         var result = underTest.transformEntity(restaurantEntity);
 
-        // then
         assertThat(result.getId()).isEqualTo(3);
         assertThat(result.getName()).isEqualTo("Asia Song Hong");
         assertThat(result.getAddress()).isEqualTo("Warschauerstraße 25, 10243 Berlin");
