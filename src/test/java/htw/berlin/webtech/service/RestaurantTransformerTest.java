@@ -24,6 +24,7 @@ public class RestaurantTransformerTest implements WithAssertions {
         doReturn(3L).when(restaurantEntity).getId();
         doReturn("Asia Song Hong").when(restaurantEntity).getName();
         doReturn("Warschauerstraße 25, 10243 Berlin").when(restaurantEntity).getAddress();
+        doReturn("billiges vietnamesisches Essen").when(restaurantEntity).getDescription();
         doReturn(VIETNAMESISCH).when(restaurantEntity).getKategorie();
         doReturn(List.of(new BewertungEntity())).when(restaurantEntity).getBewertungen();
 
@@ -34,6 +35,7 @@ public class RestaurantTransformerTest implements WithAssertions {
         assertThat(result.getId()).isEqualTo(3);
         assertThat(result.getName()).isEqualTo("Asia Song Hong");
         assertThat(result.getAddress()).isEqualTo("Warschauerstraße 25, 10243 Berlin");
+        assertThat(result.getDescription()).isEqualTo("billiges vietnamesisches Essen");
         assertThat(result.getKategorie()).isEqualTo(VIETNAMESISCH);
         assertThat(result.getBewertungIds()).hasSize(1);
     }

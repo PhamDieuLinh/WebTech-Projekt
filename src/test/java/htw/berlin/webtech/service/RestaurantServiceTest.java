@@ -22,8 +22,8 @@ public class RestaurantServiceTest  implements WithAssertions {
     private RestaurantService underTest;
 
     @Test
-    @DisplayName("should return false if to delete does not exist")
-    void should_return_false_if_person_to_delete_does_not_exist() {
+    @DisplayName("should return false if restaurant to delete does not exist")
+    void should_return_false_if_restaurant_to_delete_does_not_exist() {
         // given
         Long givenId =99L;
         doReturn(false).when(repository).existsById(givenId);
